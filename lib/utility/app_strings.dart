@@ -17,4 +17,9 @@ class AppStrings {
   static const termsTxt = 'Terms of Use';
   static const cancelBtnTxt = 'Cancel';
   static const createBtnTxt = 'Create';
+  static const lookingForTxt = 'I\'m looking for... ';
+    static const allCatTxt = 'All Categories ';
+        static const cattDessertTxt = 'Dessert ';
+
+
 }

@@ -6,12 +6,14 @@ class TextFieldWidget extends StatelessWidget {
   //   Key? key,
   // }) : super(key: key);
   final String? hint;
-  final IconButton? suffix;
+  final Widget? suffix;
+  final Widget? preffix;
   final TextInputAction? action;
   final bool? obsecure;
   final String? Function(String?)? validate;
   final TextEditingController? controller;
   final void Function(String?)? onSave;
+  Color? prefixColor;
 
   TextFieldWidget({
     this.hint,
@@ -20,7 +22,9 @@ class TextFieldWidget extends StatelessWidget {
     this.obsecure=false,
     this.validate,
     this.controller,
-    this.onSave
+    this.onSave,
+    this.preffix,
+    this.prefixColor
   });
 
   @override
@@ -32,6 +36,8 @@ class TextFieldWidget extends StatelessWidget {
       textInputAction: action,
       obscureText: obsecure!,
       decoration: InputDecoration(
+        prefixIcon: preffix,
+        prefixIconColor: prefixColor,
           suffixIcon: suffix,
           contentPadding: const EdgeInsets.only(left: 28),
           hintText: hint,

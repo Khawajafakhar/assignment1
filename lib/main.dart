@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './screens/signup_screen.dart';
+import './screens/dashboard_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       home:  SignupScreen(),
-      routes: {},
+      routes: {DashboardScreen.routeName :(context) =>const  DashboardScreen()},
     );
   }
 }

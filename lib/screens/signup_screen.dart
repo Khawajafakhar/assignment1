@@ -1,3 +1,4 @@
+import '../screens/dashboard_screen.dart';
 import 'package:flutter/material.dart';
 import '../utility/app_colors.dart';
 import '../utility/app_strings.dart';
@@ -98,6 +99,7 @@ class SignupScreen extends StatelessWidget {
                             print(data.email);
                             print(data.birthdate);
                             print(data.password);
+                            Navigator.of(context).pushNamed(DashboardScreen.routeName);
                           }
                         },
                         child: TextWidget(
