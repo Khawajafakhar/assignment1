@@ -23,7 +23,8 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const SignupScreen(),
+      home:  SignupScreen(),
+      routes: {},
     );
   }
 }

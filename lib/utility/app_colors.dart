@@ -5,4 +5,7 @@ class AppColors{
   static const txtFldBrdrClrLightGrey=   Color(0xFFD3D3D3);
   static const txtClrGrey=   Color(0xFF4D4D4D);
   static const txtFldBrdrClrGreen=    Color(0xFF00A651);
+    static const appClrWhite=    Color(0xFFFFFFFF);
+    static const appClrRed=    Colors.red;
+
 }

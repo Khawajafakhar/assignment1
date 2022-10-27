@@ -5,31 +5,64 @@ class TextFieldWidget extends StatelessWidget {
   // const TextFieldWidget({
   //   Key? key,
   // }) : super(key: key);
-  String? hint;
-  TextFieldWidget({this.hint});
+  final String? hint;
+  final IconButton? suffix;
+  final TextInputAction? action;
+  final bool? obsecure;
+  final String? Function(String?)? validate;
+  final TextEditingController? controller;
+  final void Function(String?)? onSave;
+
+  TextFieldWidget({
+    this.hint,
+    this.suffix,
+    this.action,
+    this.obsecure=false,
+    this.validate,
+    this.controller,
+    this.onSave
+  });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onSaved: onSave,
+      controller: controller,
+      validator: validate,
+      textInputAction: action,
+      obscureText: obsecure!,
       decoration: InputDecoration(
-        contentPadding: const EdgeInsets.only(left: 28),
-        hintText: hint,
-        hintStyle: hintStyle,
-        enabledBorder: getEnableBorder,
-      ),
+          suffixIcon: suffix,
+          contentPadding: const EdgeInsets.only(left: 28),
+          hintText: hint,
+          hintStyle: hintStyle,
+          enabledBorder: getEnableBorder,
+          errorBorder: getErrorBorder,
+          focusedBorder: getFocusedBorder,
+          focusedErrorBorder: getErrorBorder),
     );
   }
 
   TextStyle get hintStyle {
     return const TextStyle(
-        fontFamily: 'Poppins',
-        fontSize: 12,
-        fontWeight: FontWeight.w300,
-      );
+      fontFamily: 'Poppins',
+      fontSize: 12,
+      fontWeight: FontWeight.w300,
+    );
   }
 
   OutlineInputBorder get getEnableBorder => const OutlineInputBorder(
         borderRadius: BorderRadius.all(Radius.circular(15)),
-        borderSide: BorderSide(width: 1, color: AppColors.txtFldBrdrClrLightGrey),
+        borderSide:
+            BorderSide(width: 1, color: AppColors.txtFldBrdrClrLightGrey),
+      );
+
+  OutlineInputBorder get getFocusedBorder => const OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(15)),
+        borderSide: BorderSide(width: 1, color: AppColors.txtFldBrdrClrGreen),
+      );
+  OutlineInputBorder get getErrorBorder => const OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(15)),
+        borderSide: BorderSide(width: 1, color: AppColors.appClrRed),
       );
 }

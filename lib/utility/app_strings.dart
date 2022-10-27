@@ -15,4 +15,6 @@ class AppStrings {
   static const privacyPolicyTxt = 'Privacy Policy';
   static const andTxt = ' and ';
   static const termsTxt = 'Terms of Use';
+  static const cancelBtnTxt = 'Cancel';
+  static const createBtnTxt = 'Create';
 }

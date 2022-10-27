@@ -1,128 +1,121 @@
-import 'package:assignment1/utility/app_colors.dart';
-import 'package:assignment1/utility/app_strings.dart';
 import 'package:flutter/material.dart';
+import '../utility/app_colors.dart';
+import '../utility/app_strings.dart';
 import '../Widgets/create_account_container.dart';
 import '../utility/app_assets.dart';
-import '../Widgets/text_widget.dart';
-import '../Widgets/text_field_widget.dart';
-import '../utility/ui_helper.dart';
 import '../Widgets/check_box_widget.dart';
+import '../Model/user_data.dart';
+import '../Widgets/form_widget.dart';
+import '../Widgets/cancel_btn_widget.dart';
+import '../Widgets/text_widget.dart';
 
 class SignupScreen extends StatelessWidget {
-  const SignupScreen({Key? key}) : super(key: key);
+  SignupScreen({Key? key}) : super(key: key);
+  GlobalKey<FormState> formkey = GlobalKey<FormState>();
+  TextEditingController pass = TextEditingController();
+  TextEditingController cnfrmPass = TextEditingController();
+  UserData data = UserData();
+  var check = false;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Image.asset(AppAssets.imgTopNav),
-            const CreateAccountContainer(),
-            const SizedBox(
-              height: 32,
-            ),
-            Container(
-              width: double.infinity,
-              margin: const EdgeInsets.symmetric(horizontal: 45),
-              child: Form(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+    var scaffold = ScaffoldMessenger.of(context);
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Image.asset(AppAssets.imgTopNav),
+              const CreateAccountContainer(),
+              const SizedBox(
+                height: 32,
+              ),
+              FormWidget(
+                formkey: formkey,
+                data: data,
+                pass: pass,
+                cnfrmPass: cnfrmPass,
+              ),
+              const SizedBox(
+                height: 22,
+              ),
+              SizedBox(
+                width: 300,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    TextWidget(
-                      text: AppStrings.userNameTxt,
-                      size: 16,
-                      padding: const EdgeInsets.only(left: 11),
-                      color: AppColors.txtClrGrey,
-                    ),
-                    UiHelper.verticalXSmall,
-                    TextFieldWidget(hint: AppStrings.userNameHintTxt),
-                    UiHelper.verticalSmall,
-                    TextWidget(
-                      text: AppStrings.emailTxt,
-                      size: 16,
-                      padding: const EdgeInsets.only(left: 11),
-                      color: AppColors.txtClrGrey,
-                    ),
-                    UiHelper.verticalXSmall,
-                    TextFieldWidget(hint: AppStrings.emailHintTxt),
-                    UiHelper.verticalSmall,
-                    TextWidget(
-                      text: AppStrings.birthdateTxt,
-                      size: 16,
-                      padding: const EdgeInsets.only(left: 11),
-                      color: AppColors.txtClrGrey,
-                    ),
-                    UiHelper.verticalXSmall,
-                    TextFieldWidget(hint: AppStrings.birthdateHintTxt),
-                    UiHelper.verticalSmall,
-                    TextWidget(
-                      text: AppStrings.passwordTxt,
-                      size: 16,
-                      padding: const EdgeInsets.only(left: 11),
-                      color: AppColors.txtClrGrey,
-                    ),
-                    UiHelper.verticalXSmall,
-                    TextFieldWidget(hint: AppStrings.passwordHintTxt),
-                    UiHelper.verticalSmall,
-                    TextWidget(
-                      text: AppStrings.cnfrmpasswordTxt,
-                      size: 16,
-                      padding: const EdgeInsets.only(left: 11),
-                      color: AppColors.txtClrGrey,
-                    ),
-                    UiHelper.verticalXSmall,
-                    TextFieldWidget(hint: AppStrings.cnfrmpasswordHintTxt),
+                    CheckBoxWidget(checked: (checked) {
+                      check = checked;
+                    }),
+                    RichText(
+                        text: const TextSpan(children: [
+                      TextSpan(
+                          text: AppStrings.byCreatingTxt,
+                          style: TextStyle(color: AppColors.txtClrGrey)),
+                      TextSpan(
+                          text: AppStrings.privacyPolicyTxt,
+                          style: TextStyle(
+                            color: AppColors.txtFldBrdrClrGreen,
+                            decoration: TextDecoration.underline,
+                          )),
+                      TextSpan(
+                          text: AppStrings.andTxt,
+                          style: TextStyle(color: AppColors.txtClrGrey)),
+                      TextSpan(
+                          text: AppStrings.termsTxt,
+                          style: TextStyle(
+                            color: AppColors.txtFldBrdrClrGreen,
+                            decoration: TextDecoration.underline,
+                          )),
+                    ])),
                   ],
                 ),
               ),
-            ),
-            const SizedBox(
-              height: 22,
-            ),
-            SizedBox(
-              width: 300,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  const CheckBoxWidget(),
-                  RichText(
-                      text: const TextSpan(children: [
-                    TextSpan(
-                        text: AppStrings.byCreatingTxt,
-                        style: TextStyle(color: AppColors.txtClrGrey)),
-                    TextSpan(
-                        text: AppStrings.privacyPolicyTxt,
-                        style: TextStyle(
-                          color: AppColors.txtFldBrdrClrGreen,
-                          decoration: TextDecoration.underline,
-                        )),
-                    TextSpan(
-                        text: AppStrings.andTxt,
-                        style: TextStyle(color: AppColors.txtClrGrey)),
-                    TextSpan(
-                        text: AppStrings.termsTxt,
-                        style: TextStyle(
-                          color: AppColors.txtFldBrdrClrGreen,
-                          decoration: TextDecoration.underline,
-                        )),
-                  ])),
-                ],
+              const SizedBox(
+                height: 22,
               ),
-            ),
-            const SizedBox(
-              height: 22,
-            ),
-            SizedBox(
-              width: 320,
-              child: Row(children: [
-                OutlinedButton(
-                  onPressed: () {},
-                  child: const Text('Cancel'),
-                ),
-              ]),
-            )
-          ],
+              Container(
+                width: 320,
+                margin: const EdgeInsets.only(bottom: 50),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const CancelBtnWidget(),
+                      ElevatedButton(
+                        onPressed: () {
+                          if (formkey.currentState!.validate()) {
+                            if (check != true) {
+                              scaffold.showSnackBar(const SnackBar(
+                                content:
+                                    Text('Please agree terms and conditions'),
+                                duration: Duration(seconds: 2),
+                              ));
+                              return;
+                            }
+                            formkey.currentState!.save();
+                            print(data.userName);
+                            print(data.email);
+                            print(data.birthdate);
+                            print(data.password);
+                          }
+                        },
+                        child: TextWidget(
+                          text: AppStrings.createBtnTxt,
+                          color: AppColors.appClrWhite,
+                          size: 20,
+                          weight: FontWeight.w600,
+                        ),
+                        style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(50)),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 40, vertical: 15)),
+                      ),
+                    ]),
+              )
+            ],
+          ),
         ),
       ),
     );
