@@ -21,105 +21,111 @@ class SignupScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var scaffold = ScaffoldMessenger.of(context);
-    return GestureDetector(
-      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-      child: Scaffold(
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Image.asset(AppAssets.imgTopNav),
-              const CreateAccountContainer(),
-              const SizedBox(
-                height: 32,
+    return  GestureDetector(
+        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+        child: SafeArea(
+          left: false,
+          right: false,
+          bottom: false,
+          child: Scaffold(
+            body: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Image.asset(AppAssets.imgTopNav),
+                  const CreateAccountContainer(),
+                  const SizedBox(
+                    height: 32,
+                  ),
+                  FormWidget(
+                    formkey: formkey,
+                    data: data,
+                    pass: pass,
+                    cnfrmPass: cnfrmPass,
+                  ),
+                  const SizedBox(
+                    height: 22,
+                  ),
+                  SizedBox(
+                    width: 300,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        CheckBoxWidget(checked: (checked) {
+                          check = checked;
+                        }),
+                        RichText(
+                            text: const TextSpan(children: [
+                          TextSpan(
+                              text: AppStrings.byCreatingTxt,
+                              style: TextStyle(color: AppColors.txtClrGrey)),
+                          TextSpan(
+                              text: AppStrings.privacyPolicyTxt,
+                              style: TextStyle(
+                                color: AppColors.txtFldBrdrClrGreen,
+                                decoration: TextDecoration.underline,
+                              )),
+                          TextSpan(
+                              text: AppStrings.andTxt,
+                              style: TextStyle(color: AppColors.txtClrGrey)),
+                          TextSpan(
+                              text: AppStrings.termsTxt,
+                              style: TextStyle(
+                                color: AppColors.txtFldBrdrClrGreen,
+                                decoration: TextDecoration.underline,
+                              )),
+                        ])),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 22,
+                  ),
+                  Container(
+                    width: 320,
+                    margin: const EdgeInsets.only(bottom: 50),
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const CancelBtnWidget(),
+                          ElevatedButton(
+                            onPressed: () {
+                              if (formkey.currentState!.validate()) {
+                                if (check != true) {
+                                  scaffold.showSnackBar(const SnackBar(
+                                    content:
+                                        Text(AppStrings.pleaseAgreeTxt),
+                                    duration: Duration(seconds: 2),
+                                  ));
+                                  return;
+                                }
+                                formkey.currentState!.save();
+                                print(data.userName);
+                                print(data.email);
+                                print(data.birthdate);
+                                print(data.password);
+                                Navigator.of(context).pushNamed(DashboardScreen.routeName);
+                              }
+                            },
+                            child: TextWidget(
+                              text: AppStrings.createBtnTxt,
+                              color: AppColors.appClrWhite,
+                              size: 20,
+                              weight: FontWeight.w600,
+                            ),
+                            style: ElevatedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(50)),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 40, vertical: 15)),
+                          ),
+                        ]),
+                  )
+                ],
               ),
-              FormWidget(
-                formkey: formkey,
-                data: data,
-                pass: pass,
-                cnfrmPass: cnfrmPass,
-              ),
-              const SizedBox(
-                height: 22,
-              ),
-              SizedBox(
-                width: 300,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    CheckBoxWidget(checked: (checked) {
-                      check = checked;
-                    }),
-                    RichText(
-                        text: const TextSpan(children: [
-                      TextSpan(
-                          text: AppStrings.byCreatingTxt,
-                          style: TextStyle(color: AppColors.txtClrGrey)),
-                      TextSpan(
-                          text: AppStrings.privacyPolicyTxt,
-                          style: TextStyle(
-                            color: AppColors.txtFldBrdrClrGreen,
-                            decoration: TextDecoration.underline,
-                          )),
-                      TextSpan(
-                          text: AppStrings.andTxt,
-                          style: TextStyle(color: AppColors.txtClrGrey)),
-                      TextSpan(
-                          text: AppStrings.termsTxt,
-                          style: TextStyle(
-                            color: AppColors.txtFldBrdrClrGreen,
-                            decoration: TextDecoration.underline,
-                          )),
-                    ])),
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 22,
-              ),
-              Container(
-                width: 320,
-                margin: const EdgeInsets.only(bottom: 50),
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const CancelBtnWidget(),
-                      ElevatedButton(
-                        onPressed: () {
-                          if (formkey.currentState!.validate()) {
-                            if (check != true) {
-                              scaffold.showSnackBar(const SnackBar(
-                                content:
-                                    Text('Please agree terms and conditions'),
-                                duration: Duration(seconds: 2),
-                              ));
-                              return;
-                            }
-                            formkey.currentState!.save();
-                            print(data.userName);
-                            print(data.email);
-                            print(data.birthdate);
-                            print(data.password);
-                            Navigator.of(context).pushNamed(DashboardScreen.routeName);
-                          }
-                        },
-                        child: TextWidget(
-                          text: AppStrings.createBtnTxt,
-                          color: AppColors.appClrWhite,
-                          size: 20,
-                          weight: FontWeight.w600,
-                        ),
-                        style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(50)),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 40, vertical: 15)),
-                      ),
-                    ]),
-              )
-            ],
+            ),
           ),
         ),
-      ),
-    );
+      );
+    
   }
 }

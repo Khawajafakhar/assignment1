@@ -6,6 +6,9 @@ class AppColors{
   static const txtClrGrey=   Color(0xFF4D4D4D);
   static const txtFldBrdrClrGreen=    Color(0xFF00A651);
     static const appClrWhite=    Color(0xFFFFFFFF);
+    static const appClrYellow= Color(0xFFF3D434);
+        static const bottomAppItemClrGrey= Color(0xFFAFAFAF);
+
     static const appClrRed=    Colors.red;
 
 }

@@ -18,8 +18,13 @@ class AppStrings {
   static const cancelBtnTxt = 'Cancel';
   static const createBtnTxt = 'Create';
   static const lookingForTxt = 'I\'m looking for... ';
-    static const allCatTxt = 'All Categories ';
-        static const cattDessertTxt = 'Dessert ';
+  static const allCatTxt = 'All Categories ';
+  static const cattDessertTxt = 'Dessert ';
+  static const pleaseAgreeTxt = 'Please agree terms of use';
+  static const recomendedTxt = 'Recommended';
+  static const viewAllTxt = 'View all';
+    static const cheeseBallsTxt = 'UTZ Cheese Balls';
+      static const newProductTxt = 'New Products';
 
 
 }

@@ -1,8 +1,15 @@
+import 'package:assignment1/utility/app_colors.dart';
 import 'package:flutter/material.dart';
 import './screens/signup_screen.dart';
 import './screens/dashboard_screen.dart';
+import 'package:flutter/services.dart';
 
 void main() {
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      statusBarColor: AppColors.txtFldBrdrClrGreen,
+    ),
+  );
   runApp(const MyApp());
 }
 

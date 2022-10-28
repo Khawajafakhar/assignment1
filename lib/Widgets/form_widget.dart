@@ -83,11 +83,11 @@ class FormWidget extends StatelessWidget {
                 return Validation.isBirthDateValid(val!);
               },
               hint: AppStrings.birthdateHintTxt,
-              action: TextInputAction.done,
               suffix: IconButton(
                 icon: const Icon(Icons.arrow_drop_down),
                 onPressed: () {},
               ),
+              action: TextInputAction.next,
             ),
             UiHelper.verticalSmall,
             TextWidget(
@@ -105,8 +105,8 @@ class FormWidget extends StatelessWidget {
                 return Validation.isPasswordValid(val!);
               },
               controller: pass,
-              action: TextInputAction.next,
               hint: AppStrings.passwordHintTxt,
+              action: TextInputAction.next,
             ),
             UiHelper.verticalSmall,
             TextWidget(
