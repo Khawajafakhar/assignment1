@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       home:  SignupScreen(),
-      routes: {DashboardScreen.routeName :(context) =>const  DashboardScreen()},
+      routes: {DashboardScreen.routeName :(context) =>  DashboardScreen()},
     );
   }
 }

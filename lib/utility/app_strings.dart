@@ -25,6 +25,10 @@ class AppStrings {
   static const viewAllTxt = 'View all';
     static const cheeseBallsTxt = 'UTZ Cheese Balls';
       static const newProductTxt = 'New Products';
+      static const menuTxt = 'Menu';
+      static const homeTxt = 'Home';
+      static const favouritesTxt = 'Favourites';
+      static const accountTxt = 'Account';
 
 
 }

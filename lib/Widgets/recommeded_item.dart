@@ -62,31 +62,32 @@ class _RecommendedItemWidgetState extends State<RecommendedItemWidget> {
                 const SizedBox(
                   height: 5,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    TextWidget(
-                      text: '£4.99',
-                      size: 14,
-                    ),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Padding(
-                          padding: EdgeInsets.only(top: 2),
-                          child: Icon(
-                            Icons.star_half_sharp,
-                            color: AppColors.appClrYellow,
-                            size: 15,
+                 Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      TextWidget(
+                        text: '£4.99',
+                        size: 14,
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.only(top: 2),
+                            child: Icon(
+                              Icons.star_half_sharp,
+                              color: AppColors.appClrYellow,
+                              size: 15,
+                            ),
                           ),
-                        ),
-                        TextWidget(
-                          text: '4.8',
-                        )
-                      ],
-                    )
-                  ],
-                ),
+                          TextWidget(
+                            text: '4.8',
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                
                 const SizedBox(
                   height: 5,
                 ),
