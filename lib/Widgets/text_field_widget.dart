@@ -13,7 +13,9 @@ class TextFieldWidget extends StatelessWidget {
   final String? Function(String?)? validate;
   final TextEditingController? controller;
   final void Function(String?)? onSave;
+  final void Function(String)? onFieldSubmitted;
   Color? prefixColor;
+  FocusNode? focusNode;
 
   TextFieldWidget({
     this.hint,
@@ -24,12 +26,15 @@ class TextFieldWidget extends StatelessWidget {
     this.controller,
     this.onSave,
     this.preffix,
-    this.prefixColor
+    this.prefixColor,
+    this.onFieldSubmitted,
+    this.focusNode
   });
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
+    return TextFormField(focusNode: focusNode,
+      onFieldSubmitted: onFieldSubmitted,
       onSaved: onSave,
       controller: controller,
       validator: validate,

@@ -9,7 +9,7 @@ import '../user_authentication/validation.dart';
 import '../Widgets/password_field_widget.dart';
 
 class FormWidget extends StatelessWidget {
-  const FormWidget({
+   FormWidget({
     Key? key,
     required this.formkey,
     required this.data,
@@ -21,9 +21,12 @@ class FormWidget extends StatelessWidget {
   final UserData data;
   final TextEditingController pass;
   final TextEditingController cnfrmPass;
+  
 
   @override
   Widget build(BuildContext context) {
+    FocusNode passFocusNode = new FocusNode();
+    FocusNode cnfrmPassFocusNode = new FocusNode();
     return Container(
       width: double.infinity,
       margin: const EdgeInsets.symmetric(horizontal: 45),
@@ -88,6 +91,9 @@ class FormWidget extends StatelessWidget {
                 onPressed: () {},
               ),
               action: TextInputAction.next,
+              onFieldSubmitted: (val){
+      FocusScope.of(context).requestFocus(passFocusNode);
+              },
             ),
             UiHelper.verticalSmall,
             TextWidget(
@@ -98,6 +104,11 @@ class FormWidget extends StatelessWidget {
             ),
             UiHelper.verticalXSmall,
             PasswordFieldWidget(
+              onFieldsubmitted: (val){
+                FocusScope.of(context).requestFocus(cnfrmPassFocusNode);
+              },
+              focusNode: passFocusNode,
+              
               onSave: (val) {
                 data.password = val!;
               },
@@ -117,6 +128,7 @@ class FormWidget extends StatelessWidget {
             ),
             UiHelper.verticalXSmall,
             PasswordFieldWidget(
+              focusNode: cnfrmPassFocusNode,
                 controller: cnfrmPass,
                 validate: (val) {
                   return Validation.isCnfrmPasswordValid(val!, pass);

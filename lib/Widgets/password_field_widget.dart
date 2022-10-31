@@ -11,12 +11,16 @@ class PasswordFieldWidget extends StatefulWidget {
   TextEditingController? controller;
   String? Function(String?)? validate;
   void Function(String?)? onSave;
+  FocusNode? focusNode;
+   void Function(String)? onFieldsubmitted;
   PasswordFieldWidget({
     this.hint,
     this.action,
     this.controller,
     this.validate,
-    this.onSave
+    this.onSave,
+    this.focusNode,
+    this.onFieldsubmitted
   });
 
   @override
@@ -28,6 +32,8 @@ class _PasswordFieldWidgetState extends State<PasswordFieldWidget> {
   @override
   Widget build(BuildContext context) {
     return TextFieldWidget(
+      onFieldSubmitted: widget.onFieldsubmitted,
+      focusNode: widget.focusNode,
       onSave: widget.onSave,
       validate: widget.validate,
       suffix: IconButton(
