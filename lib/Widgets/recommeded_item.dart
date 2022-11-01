@@ -26,6 +26,7 @@ class _RecommendedItemWidgetState extends State<RecommendedItemWidget> {
             padding: const EdgeInsets.all(8.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Stack(
                   children: [
@@ -52,16 +53,16 @@ class _RecommendedItemWidgetState extends State<RecommendedItemWidget> {
                     )
                   ],
                 ),
-                const SizedBox(
-                  height: 5,
-                ),
+                // const SizedBox(
+                //   height: 5,
+                // ),
                 TextWidget(
                     text: AppStrings.cheeseBallsTxt,
                     weight: FontWeight.w600,
                     size: 14),
-                const SizedBox(
-                  height: 5,
-                ),
+                // const SizedBox(
+                //   height: 5,
+                // ),
                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -88,9 +89,9 @@ class _RecommendedItemWidgetState extends State<RecommendedItemWidget> {
                     ],
                   ),
                 
-                const SizedBox(
-                  height: 5,
-                ),
+                // const SizedBox(
+                //   height: 5,
+                // ),
                 Row(
                   children: [
                     Container(

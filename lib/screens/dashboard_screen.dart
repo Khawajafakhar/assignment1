@@ -2,7 +2,7 @@ import 'package:assignment1/Widgets/account_page_widget.dart';
 import 'package:assignment1/Widgets/favourites_page_widget.dart';
 import 'package:assignment1/Widgets/menu_page_widget.dart';
 import 'package:flutter/material.dart';
-import '../Widgets/BottomAppBarWidget.dart';
+import '../Widgets/bottom_appBar_widget.dart';
 import '../Widgets/FABWidget.dart';
 import '../Widgets/home_page_widget.dart';
 

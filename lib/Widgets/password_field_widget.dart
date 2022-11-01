@@ -13,6 +13,7 @@ class PasswordFieldWidget extends StatefulWidget {
   void Function(String?)? onSave;
   FocusNode? focusNode;
    void Function(String)? onFieldsubmitted;
+   TextInputType? keyboardType;
   PasswordFieldWidget({
     this.hint,
     this.action,
@@ -20,7 +21,8 @@ class PasswordFieldWidget extends StatefulWidget {
     this.validate,
     this.onSave,
     this.focusNode,
-    this.onFieldsubmitted
+    this.onFieldsubmitted,
+    this.keyboardType
   });
 
   @override
@@ -32,6 +34,7 @@ class _PasswordFieldWidgetState extends State<PasswordFieldWidget> {
   @override
   Widget build(BuildContext context) {
     return TextFieldWidget(
+      keyboardType: widget.keyboardType,
       onFieldSubmitted: widget.onFieldsubmitted,
       focusNode: widget.focusNode,
       onSave: widget.onSave,

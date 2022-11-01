@@ -7,9 +7,10 @@ import '../utility/ui_helper.dart';
 import '../Widgets/text_field_widget.dart';
 import '../user_authentication/validation.dart';
 import '../Widgets/password_field_widget.dart';
+import 'package:intl/intl.dart';
 
 class FormWidget extends StatelessWidget {
-   FormWidget({
+  FormWidget({
     Key? key,
     required this.formkey,
     required this.data,
@@ -21,8 +22,7 @@ class FormWidget extends StatelessWidget {
   final UserData data;
   final TextEditingController pass;
   final TextEditingController cnfrmPass;
-  
-
+  final TextEditingController birthdateController=TextEditingController();
   @override
   Widget build(BuildContext context) {
     FocusNode passFocusNode = new FocusNode();
@@ -61,6 +61,7 @@ class FormWidget extends StatelessWidget {
             ),
             UiHelper.verticalXSmall,
             TextFieldWidget(
+              keyboardType: TextInputType.emailAddress,
               onSave: (val) {
                 data.email = val!;
               },
@@ -68,7 +69,7 @@ class FormWidget extends StatelessWidget {
                 return Validation.isEmailValid(val!);
               },
               hint: AppStrings.emailHintTxt,
-              action: TextInputAction.next,
+              action: TextInputAction.done,
             ),
             UiHelper.verticalSmall,
             TextWidget(
@@ -89,10 +90,14 @@ class FormWidget extends StatelessWidget {
               suffix: IconButton(
                 icon: const Icon(Icons.arrow_drop_down),
                 onPressed: () {},
-              ),
-              action: TextInputAction.next,
-              onFieldSubmitted: (val){
-      FocusScope.of(context).requestFocus(passFocusNode);
+              ),controller: birthdateController,
+              onTap: () {
+                FocusScope.of(context).requestFocus(FocusNode());
+                _selectDate(context);
+              },
+              action: TextInputAction.none,
+              onFieldSubmitted: (val) {
+                FocusScope.of(context).requestFocus(passFocusNode);
               },
             ),
             UiHelper.verticalSmall,
@@ -104,11 +109,10 @@ class FormWidget extends StatelessWidget {
             ),
             UiHelper.verticalXSmall,
             PasswordFieldWidget(
-              onFieldsubmitted: (val){
+              onFieldsubmitted: (val) {
                 FocusScope.of(context).requestFocus(cnfrmPassFocusNode);
               },
               focusNode: passFocusNode,
-              
               onSave: (val) {
                 data.password = val!;
               },
@@ -128,7 +132,7 @@ class FormWidget extends StatelessWidget {
             ),
             UiHelper.verticalXSmall,
             PasswordFieldWidget(
-              focusNode: cnfrmPassFocusNode,
+                focusNode: cnfrmPassFocusNode,
                 controller: cnfrmPass,
                 validate: (val) {
                   return Validation.isCnfrmPasswordValid(val!, pass);
@@ -139,5 +143,14 @@ class FormWidget extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future _selectDate(BuildContext context) async {
+    await showDatePicker(
+            context: context,
+            initialDate: DateTime.now(),
+            firstDate: DateTime(1900),
+            lastDate: DateTime.now())
+        .then((picked) => birthdateController.text=DateFormat.yMMMd().format(picked!));
   }
 }

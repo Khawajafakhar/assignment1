@@ -14,26 +14,32 @@ class TextFieldWidget extends StatelessWidget {
   final TextEditingController? controller;
   final void Function(String?)? onSave;
   final void Function(String)? onFieldSubmitted;
+  final void Function()? onTap;
   Color? prefixColor;
   FocusNode? focusNode;
+  TextInputType? keyboardType;
 
-  TextFieldWidget({
-    this.hint,
-    this.suffix,
-    this.action,
-    this.obsecure=false,
-    this.validate,
-    this.controller,
-    this.onSave,
-    this.preffix,
-    this.prefixColor,
-    this.onFieldSubmitted,
-    this.focusNode
-  });
+  TextFieldWidget(
+      {this.hint,
+      this.suffix,
+      this.action,
+      this.obsecure = false,
+      this.validate,
+      this.controller,
+      this.onSave,
+      this.preffix,
+      this.prefixColor,
+      this.onFieldSubmitted,
+      this.focusNode,
+      this.keyboardType=TextInputType.name,
+      this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(focusNode: focusNode,
+    return TextFormField(
+      onTap: onTap,
+      keyboardType: keyboardType,
+      focusNode: focusNode,
       onFieldSubmitted: onFieldSubmitted,
       onSaved: onSave,
       controller: controller,
@@ -41,8 +47,8 @@ class TextFieldWidget extends StatelessWidget {
       textInputAction: action,
       obscureText: obsecure!,
       decoration: InputDecoration(
-        prefixIcon: preffix,
-        prefixIconColor: prefixColor,
+          prefixIcon: preffix,
+          prefixIconColor: prefixColor,
           suffixIcon: suffix,
           contentPadding: const EdgeInsets.only(left: 28),
           hintText: hint,

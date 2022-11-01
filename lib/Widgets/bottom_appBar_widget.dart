@@ -61,7 +61,7 @@ class BottomAppBarWidget extends StatelessWidget {
       onTap: () => selectedIndex(index),
       child: Container(
         height: 55,
-        width: 65,
+        width: 75,
         padding: const EdgeInsets.all(6.0),
         child: Column(
           children: [
